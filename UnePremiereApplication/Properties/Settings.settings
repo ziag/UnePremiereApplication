@@ -1,7 +1,15 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="UnePremiereApplication.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="UnePremiereApplication_com_webservicex_www_GlobalWeather" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://www.webservicex.com/globalweather.asmx</Value>
+    </Setting>
+    <Setting Name="UnePremiereApplication_net_webservicex_www_airport_airport" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://www.webservicex.net/airport.asmx</Value>
+    </Setting>
+    <Setting Name="UnePremiereApplication_net_webservicex_www_country_detail_country" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://www.webservicex.net/country.asmx</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>
