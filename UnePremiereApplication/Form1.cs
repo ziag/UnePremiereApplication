@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
-using clsPays;
+
 using System.Xml;
+
 
 namespace UnePremiereApplication
 {
@@ -37,17 +32,17 @@ namespace UnePremiereApplication
                 com.webservicex.www.globalweather.GlobalWeather gw = new com.webservicex.www.globalweather.GlobalWeather();
                 ville = gw.GetWeather("New York", "United States");
                 //ville = gw.GetCitiesByCountry(txtRecherche.ToString());
-                    //gw.GetCitiesByCountry(txtRecherche.ToString());
+                //gw.GetCitiesByCountry(txtRecherche.ToString());
 
                 //net.webservicex.www.airport.airport  air = new net.webservicex.www.airport.airport();
                 //ville = air.GetAirportInformationByCountry(txtRecherche.ToString());
-                //net.webservicex.www.country ccc = new net.webservicex.www.country();
-                //Pays objemp = new Pays();
-                //string sss = ccc.GetCountries();
+                net.webservicex.www.country.detail.country ccc = new net.webservicex.www.country.detail.country();
+                Pays objemp = new Pays();
+                string sss = ccc.GetCountries ();
 
 
-                //objemp = (Pays)CreateObject(sss, objemp);
-                //string strView = CreateXML(objemp);
+                objemp = (Pays)CreateObject(sss, objemp);
+                string strView = CreateXML(objemp);
                 //lblReponse.Text = strView;
 
                 XmlDocument XmlDoc = new XmlDocument();
@@ -74,7 +69,9 @@ namespace UnePremiereApplication
         {
             XmlSerializer oXmlSerializer = new XmlSerializer(YourClassObject.GetType());
             //The StringReader will be the stream holder for the existing XML file 
-            YourClassObject = oXmlSerializer.Deserialize(new StringReader(XMLString));
+            StringReader sr = new StringReader(XMLString);
+
+            YourClassObject = oXmlSerializer.Deserialize(sr);
             //initially deserialized, the data is represented by an object without a defined type 
             return YourClassObject;
         }
