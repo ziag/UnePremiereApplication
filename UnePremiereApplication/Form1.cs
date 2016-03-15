@@ -5,12 +5,15 @@ using System.Windows.Forms;
 using System.Xml.Serialization;
 
 using System.Xml;
-
+using System.Xml.Linq;
 
 namespace UnePremiereApplication
 {
     public partial class Form1 : Form
     {
+        private string fileName;
+        private static object yourXml;
+
         public Form1()
         {
             InitializeComponent();
@@ -30,28 +33,41 @@ namespace UnePremiereApplication
                 string ville = string.Empty;
 
                 com.webservicex.www.globalweather.GlobalWeather gw = new com.webservicex.www.globalweather.GlobalWeather();
-                ville = gw.GetWeather("New York", "United States");
-                //ville = gw.GetCitiesByCountry(txtRecherche.ToString());
+                //ville = gw.GetWeather("New York", "United States");
+                ville = gw.GetCitiesByCountry("Canada");
                 //gw.GetCitiesByCountry(txtRecherche.ToString());
 
                 //net.webservicex.www.airport.airport  air = new net.webservicex.www.airport.airport();
                 //ville = air.GetAirportInformationByCountry(txtRecherche.ToString());
-                net.webservicex.www.country.detail.country ccc = new net.webservicex.www.country.detail.country();
-                Pays objemp = new Pays();
-                string sss = ccc.GetCountries ();
+                //net.webservicex.www.country.detail.country ccc = new net.webservicex.www.country.detail.country();
+                //Pays objemp = new Pays();
+                //string sss = ccc.GetCountries ();
 
 
-                objemp = (Pays)CreateObject(sss, objemp);
-                string strView = CreateXML(objemp);
+                //objemp = (Pays)CreateObject(sss, objemp);
+                //string strView = CreateXML(objemp);
                 //lblReponse.Text = strView;
 
-                XmlDocument XmlDoc = new XmlDocument();
+                //XmlDocument XmlDoc = new XmlDocument();
 
-                XmlDoc.LoadXml(ville);
-                XmlReader xmlFile = new XmlNodeReader(XmlDoc);
-                DataSet ds = new DataSet();
-                ds.ReadXml(xmlFile);
-                dataGridView1.DataSource = ds.Tables[0];
+                //XmlDoc.LoadXml(ville);
+                //XmlReader xmlFile = new XmlNodeReader(XmlDoc);
+                //DataSet ds = new DataSet();
+                //ds.ReadXml(xmlFile);
+                //dataGridView1.DataSource = ds.Tables[0];
+
+                Pays data = new Pays();
+                data.Name = "Name";
+                //data.Value = 100;
+                //data.SubItems = new string[] { "Item1", "Item2", "Item3" };
+                XmlSerializer ser = new XmlSerializer(typeof(Pays));
+                using (FileStream file = new FileStream("C:\\TEMP\\TEST.XML", FileMode.Create, FileAccess.Write))
+                {
+                    ser.Serialize(file, data);
+                }
+
+                WriteXML();
+
             }
             catch (Exception ex)
             {
@@ -89,6 +105,27 @@ namespace UnePremiereApplication
                 xmlDoc.Load(xmlStream);
                 return xmlDoc.InnerXml;
             }
+        }
+
+        public static void WriteXML( string myNamespace)
+        {
+
+
+
+            XElement xml = XElement.Load(@"testData.xml");
+            XNamespace foobar = "http://foobar/webservices";
+            string personId = xml.Descendants(foobar + "person_id").First().Value;
+
+            Pays overview = new Pays();
+            overview.Table = "Serialization Overview";
+            System.Xml.Serialization.XmlSerializer writer =
+                new System.Xml.Serialization.XmlSerializer(typeof(Pays));
+
+            var path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "//SerializationOverview.xml";
+            System.IO.FileStream file = System.IO.File.Create(path);
+
+            writer.Serialize(file, overview);
+            file.Close();
         }
 
     }
