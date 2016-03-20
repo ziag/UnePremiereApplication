@@ -98,7 +98,7 @@ namespace UnePremiereApplication
             //initially deserialized, the data is represented by an object without a defined type 
             return YourClassObject;
         }
-        public string CreateXML(Object YourClassObject)
+        public string CreateXML(object YourClassObject)
         {
             XmlDocument xmlDoc = new XmlDocument();   //Represents an XML document, 
                                                       // Initializes a new instance of the XmlDocument class.          
@@ -142,10 +142,16 @@ namespace UnePremiereApplication
             using (monModele bdd = new monModele())
             {
                 //Définition de la requête LinQ
-                //var requete = from auteur in bdd.Auteur  
-                //             select auteur;
-                var requete = bdd.Auteur.Where (p => p.Nom != null);
+                var requete = from auteur in bdd.Auteur
+                              select new { Nom = auteur.Nom, prenom = auteur.Prenom};
+ 
+                //var requete = bdd.Auteur.Where (p => p.Nom != null);
+
+                //bdd.Auteur.Add (new bool =  Nom="nnn", Prenom)
+
+
                 dataGridView1.DataSource = requete.ToList();  
+                
             }
         }
     }
