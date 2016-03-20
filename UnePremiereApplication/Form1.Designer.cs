@@ -33,6 +33,7 @@
             this.txtRecherche = new System.Windows.Forms.TextBox();
             this.lblReponse = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnImport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,9 +49,9 @@
             // 
             // btnQuitter
             // 
-            this.btnQuitter.Location = new System.Drawing.Point(376, 12);
+            this.btnQuitter.Location = new System.Drawing.Point(360, 20);
             this.btnQuitter.Name = "btnQuitter";
-            this.btnQuitter.Size = new System.Drawing.Size(60, 31);
+            this.btnQuitter.Size = new System.Drawing.Size(77, 27);
             this.btnQuitter.TabIndex = 1;
             this.btnQuitter.Text = "&Quitter";
             this.btnQuitter.UseVisualStyleBackColor = true;
@@ -68,7 +69,7 @@
             // 
             this.lblReponse.Location = new System.Drawing.Point(25, 69);
             this.lblReponse.Name = "lblReponse";
-            this.lblReponse.Size = new System.Drawing.Size(374, 18);
+            this.lblReponse.Size = new System.Drawing.Size(411, 18);
             this.lblReponse.TabIndex = 3;
             this.lblReponse.Text = "label1";
             // 
@@ -77,14 +78,25 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(28, 90);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(371, 409);
+            this.dataGridView1.Size = new System.Drawing.Size(904, 409);
             this.dataGridView1.TabIndex = 4;
+            // 
+            // btnImport
+            // 
+            this.btnImport.Location = new System.Drawing.Point(277, 20);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(77, 27);
+            this.btnImport.TabIndex = 5;
+            this.btnImport.Text = "Import";
+            this.btnImport.UseVisualStyleBackColor = true;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(448, 522);
+            this.ClientSize = new System.Drawing.Size(944, 522);
+            this.Controls.Add(this.btnImport);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.lblReponse);
             this.Controls.Add(this.txtRecherche);
@@ -100,12 +112,13 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        //private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Button btnQuitter;
         private System.Windows.Forms.TextBox txtRecherche;
         private System.Windows.Forms.Label lblReponse;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button btnImport;
     }
 }
 

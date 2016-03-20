@@ -1,29 +1,31 @@
 ﻿using System;
+//using System.Collections.Generic;
+using System.Linq;
+//using System.Text;
+
 using System.Data;
+//using System.Data.SqlClient;
+//using System.Data.Common;
+using System.Xml.Serialization;
 using System.IO;
 using System.Windows.Forms;
-using System.Xml.Serialization;
-
 using System.Xml;
 using System.Xml.Linq;
+using System.Globalization;
 
 namespace UnePremiereApplication
 {
     public partial class Form1 : Form
     {
-        private string fileName;
-        private static object yourXml;
+        //private string fileName;
+        //private static object yourXml;
 
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void btnQuitter_Click(object sender, EventArgs e)
-        {
-         
-        }
-
+      
         private void btnOk_Click(object sender, EventArgs e)
         {
 
@@ -37,36 +39,30 @@ namespace UnePremiereApplication
                 ville = gw.GetCitiesByCountry("Canada");
                 //gw.GetCitiesByCountry(txtRecherche.ToString());
 
-                //net.webservicex.www.airport.airport  air = new net.webservicex.www.airport.airport();
+                //net.webservicex.www.airport.airport air = new net.webservicex.www.airport.airport();
                 //ville = air.GetAirportInformationByCountry(txtRecherche.ToString());
                 //net.webservicex.www.country.detail.country ccc = new net.webservicex.www.country.detail.country();
                 //Pays objemp = new Pays();
-                //string sss = ccc.GetCountries ();
+                //string sss = ccc.GetCountries();
 
 
                 //objemp = (Pays)CreateObject(sss, objemp);
                 //string strView = CreateXML(objemp);
                 //lblReponse.Text = strView;
 
-                //XmlDocument XmlDoc = new XmlDocument();
+                feedDtAvecXml(ville);
 
-                //XmlDoc.LoadXml(ville);
-                //XmlReader xmlFile = new XmlNodeReader(XmlDoc);
-                //DataSet ds = new DataSet();
-                //ds.ReadXml(xmlFile);
-                //dataGridView1.DataSource = ds.Tables[0];
+                //Pays data = new Pays();
+                //data.Name = "Name";
+                ////data.Value = 100;
+                ////data.SubItems = new string[] { "Item1", "Item2", "Item3" };
+                //XmlSerializer ser = new XmlSerializer(typeof(Pays));
+                //using (FileStream file = new FileStream("C:\\TEMP\\TEST.XML", FileMode.Create, FileAccess.Write))
+                //{
+                //    ser.Serialize(file, data);
+                //}
 
-                Pays data = new Pays();
-                data.Name = "Name";
-                //data.Value = 100;
-                //data.SubItems = new string[] { "Item1", "Item2", "Item3" };
-                XmlSerializer ser = new XmlSerializer(typeof(Pays));
-                using (FileStream file = new FileStream("C:\\TEMP\\TEST.XML", FileMode.Create, FileAccess.Write))
-                {
-                    ser.Serialize(file, data);
-                }
-
-                WriteXML();
+                //WriteXML();
 
             }
             catch (Exception ex)
@@ -74,6 +70,17 @@ namespace UnePremiereApplication
                 MessageBox.Show(ex.ToString());
             }
 
+        }
+
+        private void feedDtAvecXml(string ville)
+        {
+            XmlDocument XmlDoc = new XmlDocument();
+
+            XmlDoc.LoadXml(ville);
+            XmlReader xmlFile = new XmlNodeReader(XmlDoc);
+            DataSet ds = new DataSet();
+            ds.ReadXml(xmlFile);
+            dataGridView1.DataSource = ds.Tables[0];
         }
 
         private void btnQuitter_Click_1(object sender, EventArgs e)
@@ -107,14 +114,14 @@ namespace UnePremiereApplication
             }
         }
 
-        public static void WriteXML( string myNamespace)
+        public static void WriteXML( )
         {
 
 
 
             XElement xml = XElement.Load(@"testData.xml");
             XNamespace foobar = "http://foobar/webservices";
-            string personId = xml.Descendants(foobar + "person_id").First().Value;
+            //string personId = xml.Descendants(foobar + "person_id").First().Value;
 
             Pays overview = new Pays();
             overview.Table = "Serialization Overview";
@@ -128,5 +135,18 @@ namespace UnePremiereApplication
             file.Close();
         }
 
+       
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            using (monModele bdd = new monModele())
+            {
+                //Définition de la requête LinQ
+                //var requete = from auteur in bdd.Auteur  
+                //             select auteur;
+                var requete = bdd.Auteur.Where (p => p.Nom != null);
+                dataGridView1.DataSource = requete.ToList();  
+            }
+        }
     }
 }
