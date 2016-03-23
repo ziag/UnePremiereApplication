@@ -139,16 +139,35 @@ namespace UnePremiereApplication
 
         private void btnImport_Click(object sender, EventArgs e)
         {
+            Auteur a = new Auteur();
+            a.Nom = "nom3";
+            a.Prenom = "prenom3";
+   
+
+
+           
+
             using (monModele bdd = new monModele())
             {
+                bdd.Auteur.Add(a);
+                bdd.SaveChanges();
+
+                a.Nom = "nom";
+                a.Prenom = "prenom";
+            
+
+
+                bdd.Auteur.Remove(a);
+                bdd.SaveChanges();
+
                 //Définition de la requête LinQ
                 var requete = from auteur in bdd.Auteur
-                              select new { Nom = auteur.Nom, prenom = auteur.Prenom};
- 
+                              select new { Id =auteur.Id, Nom = auteur.Nom, prenom = auteur.Prenom};
+
                 //var requete = bdd.Auteur.Where (p => p.Nom != null);
 
                 //bdd.Auteur.Add (new bool =  Nom="nnn", Prenom)
-
+             
 
                 dataGridView1.DataSource = requete.ToList();  
                 
