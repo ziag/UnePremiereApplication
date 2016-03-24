@@ -139,38 +139,40 @@ namespace UnePremiereApplication
 
         private void btnImport_Click(object sender, EventArgs e)
         {
-            Auteur a = new Auteur();
-            a.Nom = "nom3";
-            a.Prenom = "prenom3";
-   
-
-
-           
+            Auteur aut = new Auteur();
+            aut.Nom = "nom3";
+            aut.Prenom = "prenom3";
 
             using (monModele bdd = new monModele())
             {
-                bdd.Auteur.Add(a);
+                bdd.Auteur.Add(aut);
                 bdd.SaveChanges();
 
-                a.Nom = "nom";
-                a.Prenom = "prenom";
-            
 
+                //var r = (from auteur in bdd.Auteur
+                //              where auteur.Nom.Contains("Nom")
+                //              select auteur).FirstOrDefault ();
 
-                bdd.Auteur.Remove(a);
+                //bdd.Auteur.Remove(r) ;
+                //var requete = bdd.Auteur.Where (p => p.Nom != null);
+
+                //obj.tblA.Where(x => x.fid == i).ToList().ForEach(obj.tblA.DeleteObject);
+                //obj.SaveChanges();
+
+                //db.ProRel.RemoveRange(db.ProRel.Where(c => c.ProjectId == Project_id));
+
+                bdd.Auteur.RemoveRange(bdd.Auteur.Where(x => x.Nom.Contains("Nom")));
                 bdd.SaveChanges();
+
+
 
                 //Définition de la requête LinQ
                 var requete = from auteur in bdd.Auteur
-                              select new { Id =auteur.Id, Nom = auteur.Nom, prenom = auteur.Prenom};
+                              select new { Id = auteur.Id, Nom = auteur.Nom, prenom = auteur.Prenom };
 
-                //var requete = bdd.Auteur.Where (p => p.Nom != null);
+                dataGridView1.DataSource = requete.ToList();
 
-                //bdd.Auteur.Add (new bool =  Nom="nnn", Prenom)
-             
 
-                dataGridView1.DataSource = requete.ToList();  
-                
             }
         }
     }
