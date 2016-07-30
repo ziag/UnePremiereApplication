@@ -121,6 +121,7 @@ namespace UnePremiereApplication
 
             XElement xml = XElement.Load(@"testData.xml");
             XNamespace foobar = "http://foobar/webservices";
+            //rien pantout
             //string personId = xml.Descendants(foobar + "person_id").First().Value;
 
             Pays overview = new Pays();
