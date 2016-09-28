@@ -36,8 +36,10 @@ namespace UnePremiereApplication
 
                 com.webservicex.www.globalweather.GlobalWeather gw = new com.webservicex.www.globalweather.GlobalWeather();
                 //ville = gw.GetWeather("New York", "United States");
-                ville = gw.GetCitiesByCountry("Canada");
-                //gw.GetCitiesByCountry(txtRecherche.ToString());
+                //ville = gw.GetCitiesByCountry("Canada");
+                string x = txtRecherche.Text.ToString();
+
+                ville = gw.GetCitiesByCountry(x);
 
                 //net.webservicex.www.airport.airport air = new net.webservicex.www.airport.airport();
                 //ville = air.GetAirportInformationByCountry(txtRecherche.ToString());
