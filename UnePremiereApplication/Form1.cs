@@ -12,6 +12,9 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
 using System.Globalization;
+using System.Collections.Generic;
+using System.ServiceModel.Syndication;
+
 
 namespace UnePremiereApplication
 {
@@ -28,6 +31,7 @@ namespace UnePremiereApplication
       
         private void btnOk_Click(object sender, EventArgs e)
         {
+            feed();
 
             try
             {
@@ -73,6 +77,19 @@ namespace UnePremiereApplication
             }
 
         }
+
+        private string feed()
+        {
+            string strURL = "http://cdn-europe1.new2.ladmedia.fr/var/exports/podcasts/sound/hondelatte-raconte.xml";
+            XmlReader reader = XmlReader.Create(strURL);
+            SyndicationFeed feed = SyndicationFeed.Load(reader);
+            feedDtAvecXml(feed.ToString());
+
+            return "";
+
+        }
+
+      
 
         private void feedDtAvecXml(string ville)
         {

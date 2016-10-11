@@ -78,7 +78,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(28, 90);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(904, 409);
+            this.dataGridView1.Size = new System.Drawing.Size(904, 587);
             this.dataGridView1.TabIndex = 4;
             // 
             // btnImport
@@ -95,7 +95,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(944, 522);
+            this.ClientSize = new System.Drawing.Size(944, 689);
             this.Controls.Add(this.btnImport);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.lblReponse);
