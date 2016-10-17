@@ -20,6 +20,8 @@ namespace UnePremiereApplication
 {
     public partial class Form1 : Form
     {
+        
+
         //private string fileName;
         //private static object yourXml;
 
@@ -31,7 +33,7 @@ namespace UnePremiereApplication
       
         private void btnOk_Click(object sender, EventArgs e)
         {
-            feed();
+           
 
             try
             {
@@ -82,8 +84,25 @@ namespace UnePremiereApplication
         {
             string strURL = "http://cdn-europe1.new2.ladmedia.fr/var/exports/podcasts/sound/hondelatte-raconte.xml";
             XmlReader reader = XmlReader.Create(strURL);
+
             SyndicationFeed feed = SyndicationFeed.Load(reader);
-            feedDtAvecXml(feed.ToString());
+            reader.Close();
+
+            //feedDtAvecXml(feed.ToString());
+            //DataSet ds = new DataSet();
+            //ds.ReadXml(reader);
+            //dataGridView1.DataSource = ds.Tables[0];
+
+            foreach (SyndicationItem item in feed.Items)
+            {
+                string id = item.Id.ToString();
+                string titre = item.Title.Text.ToString();
+                dataGridView1.DataBindings.Add(item);
+
+            }
+
+
+
 
             return "";
 
@@ -194,6 +213,11 @@ namespace UnePremiereApplication
 
 
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            feed();
         }
     }
 }
