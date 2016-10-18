@@ -97,7 +97,7 @@ namespace UnePremiereApplication
             {
                 string id = item.Id.ToString();
                 string titre = item.Title.Text.ToString();
-                dataGridView1.DataBindings.Add(item);
+                //dataGridView1.DataBindings.Add(item);
 
             }
 
