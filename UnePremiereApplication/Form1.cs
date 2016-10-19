@@ -81,6 +81,7 @@ namespace UnePremiereApplication
         }
 
         private string feed()
+
         {
             string strURL = "http://cdn-europe1.new2.ladmedia.fr/var/exports/podcasts/sound/hondelatte-raconte.xml";
             XmlReader reader = XmlReader.Create(strURL);
