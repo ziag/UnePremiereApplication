@@ -33,7 +33,7 @@ namespace UnePremiereApplication
       
         private void btnOk_Click(object sender, EventArgs e)
         {
-           
+            //TODO
 
             try
             {
@@ -80,35 +80,35 @@ namespace UnePremiereApplication
 
         }
 
-        private string feed()
+        private void feed()
         {
             string strURL = "http://cdn-europe1.new2.ladmedia.fr/var/exports/podcasts/sound/hondelatte-raconte.xml";
             XmlReader reader = XmlReader.Create(strURL);
 
             SyndicationFeed feed = SyndicationFeed.Load(reader);
             reader.Close();
-
-            //feedDtAvecXml(feed.ToString());
-            //DataSet ds = new DataSet();
-            //ds.ReadXml(reader);
-            //dataGridView1.DataSource = ds.Tables[0];
+ 
+            listView1.HotTracking = true;
+            listView1.CheckBoxes = true;
+            listView1.Columns.Add("ID",100);
+            listView1.Columns.Add("Titre", 400);
+            listView1.View = View.Details;
 
             foreach (SyndicationItem item in feed.Items)
-            {
-                string id = item.Id.ToString();
-                string titre = item.Title.Text.ToString();
-                //dataGridView1.DataBindings.Add(item);
-
+            {                 
+                listView1.Items.Add(new ListViewItem(new String[] { item.Id.ToString(), item.Title.Text + "\n" }));
             }
-
-
-
-
-            return "";
-
+           
         }
 
-      
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //listView1.Items.Add(textbox1.Text);
+            listView1.HotTracking = true;
+
+            listView1.Items[i].SubItems.Add("hyperlynk2.text");
+        }
+
 
         private void feedDtAvecXml(string ville)
         {
