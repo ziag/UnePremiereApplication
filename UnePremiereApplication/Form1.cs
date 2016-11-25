@@ -193,6 +193,7 @@ namespace UnePremiereApplication
 
                 //db.ProRel.RemoveRange(db.ProRel.Where(c => c.ProjectId == Project_id));
 
+                bdd.Auteur.RemoveRange(bdd.Auteur.Where(x => x.Nom.Contains("NEW")));
                 bdd.Auteur.RemoveRange(bdd.Auteur.Where(x => x.Nom.Contains("Nom")));
                 bdd.SaveChanges();
 
